@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "830020674756",
+    "project_id": "lifestylehq",
+    "storage_bucket": "lifestylehq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830020674756:android:020ec08d882188672bd591",
+        "android_client_info": {
+          "package_name": "com.saxena.lifestylehq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830020674756-7j6s176svr16dn74e56v94g4k1ev5qic.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saxena.lifestylehq",
+            "certificate_hash": "6e4eecad4ef9959135274580d94f162a02507af3"
+          }
+        },
+        {
+          "client_id": "830020674756-vlo4g6ria5vblei2g56o31oe5fk8el2e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqDHFFLTWMHaooyT9Ygx0OlMq5yAQSo-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830020674756-vlo4g6ria5vblei2g56o31oe5fk8el2e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
