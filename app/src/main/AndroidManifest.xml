@@ -10,7 +10,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.LifestyleHQ"
+        android:hardwareAccelerated="true"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5696178826441726~9773769811"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

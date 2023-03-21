@@ -34,7 +34,7 @@ import java.util.Random;
 
 public class FirstFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private static FragmentFirstBinding binding;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     private int min = 1001;
@@ -49,6 +49,10 @@ public class FirstFragment extends Fragment {
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
+    }
+
+    public static void stopMusic(){
+        binding.buttonMusic.callOnClick();
     }
 
     public int getRandomNumberUsingNextInt(int min, int max) {
