@@ -8,11 +8,9 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -36,9 +34,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onUserLeaveHint()
-    {
-        FirstFragment.stopMusic();
+    protected void onStop() {
+        super.onStop();
+        FirstFragment.toggleMusic();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirstFragment.toggleMusic();
     }
 
     @Override
