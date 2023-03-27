@@ -27,14 +27,14 @@
         android:id="@+id/button_share"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@android:color/transparent"
         android:src="@drawable/share"
         android:scaleType="centerCrop"
 
         app:layout_constraintEnd_toStartOf="@+id/button_whatsapp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/app_heading" />
 
     <TextView
         android:id="@+id/textview_thought_of_the_day"
@@ -43,7 +43,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
-        android:background="@drawable/border"
+        android:background="@drawable/bordercurved"
         android:fontFamily="@font/antic"
         android:minHeight="200dp"
         android:padding="10dp"
@@ -61,53 +61,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/bordercurved"
         android:text="@string/next"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_thought_of_the_day" />
 
     <ImageButton
         android:id="@+id/button_whatsapp"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@android:color/transparent"
         android:scaleType="centerCrop"
         android:src="@drawable/whatsapp"
         app:layout_constraintEnd_toStartOf="@+id/button_music"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/app_heading" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="36dp"
-        android:src="@drawable/idea"
+        android:layout_marginTop="4dp"
         android:scaleType="centerCrop"
+        android:src="@drawable/idea"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
- />
+        app:layout_constraintTop_toBottomOf="@id/app_heading" />
 
     <ImageButton
         android:id="@+id/button_music"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="36dp"
         android:backgroundTint="@android:color/transparent"
         android:onClick="PlayBackgroundSound"
         android:scaleType="centerCrop"
         android:src="@drawable/mute"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/app_heading" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -122,17 +124,31 @@
         android:id="@+id/privacyLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/border"
+        android:padding="4sp"
         android:text="@string/privacy"
         android:textColor="@color/black"
         android:textColorHighlight="@color/black"
         android:textColorHint="@color/black"
         android:textColorLink="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button_music"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_thought_of_the_day" />
+
+    <TextView
+        android:id="@+id/app_heading"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Thoughts for the day!"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
