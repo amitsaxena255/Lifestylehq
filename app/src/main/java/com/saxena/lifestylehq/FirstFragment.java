@@ -1,15 +1,14 @@
 package com.saxena.lifestylehq;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -296,6 +295,14 @@ public class FirstFragment extends Fragment {
                 getOneThoughtFromFirestore();
             }
         });
+
+        Animation rotation = AnimationUtils.loadAnimation(getContext(),
+                R.anim.rotate);
+        binding.imageView2.startAnimation(rotation);
+
+        Animation blink = AnimationUtils.loadAnimation(getContext(),
+                R.anim.blink);
+        binding.appHeading.startAnimation(blink);
 
         binding.buttonShare.setOnClickListener(new View.OnClickListener() {
             @Override
