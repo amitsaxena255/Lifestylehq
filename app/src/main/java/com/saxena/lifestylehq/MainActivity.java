@@ -36,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        FirstFragment.toggleMusic();
+        FirstFragment.stopMusic();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        FirstFragment.toggleMusic();
+        FirstFragment.startMusic();
+//        FirstFragment.toggleMusic();
     }
 
     @Override

@@ -7,7 +7,8 @@ import android.os.IBinder;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 public class BackgroundSoundService extends Service {
-    MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer= new MediaPlayer();
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -17,7 +18,6 @@ public class BackgroundSoundService extends Service {
     public void onCreate() {
         super.onCreate();
         try {
-            mediaPlayer = new MediaPlayer();
             mediaPlayer = MediaPlayer.create(this, R.raw.sunshine);
             mediaPlayer.setLooping(true); // Set looping
             mediaPlayer.setVolume(1.0f, 1.0f);
@@ -26,6 +26,14 @@ public class BackgroundSoundService extends Service {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void stopMusic(){
+        mediaPlayer.pause();
+    }
+
+    public static void startMusic(){
+        mediaPlayer.start();
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {

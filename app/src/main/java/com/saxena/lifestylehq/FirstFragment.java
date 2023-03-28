@@ -2,7 +2,9 @@ package com.saxena.lifestylehq;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +37,7 @@ public class FirstFragment extends Fragment {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     private int min = 1001;
-    private int max = 1070;
+//    private int max = 1070;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -58,6 +60,13 @@ public class FirstFragment extends Fragment {
     public static void toggleMusic(){
         binding.buttonMusic.callOnClick();
     }
+
+    public static void stopMusic(){
+        BackgroundSoundService.stopMusic();
+    }
+
+    public static void startMusic(){
+        BackgroundSoundService.startMusic();    }
 
     public int getRandomNumberUsingNextInt(int min, int max) {
         Random random = new Random();
@@ -134,7 +143,60 @@ public class FirstFragment extends Fragment {
                 "Your time is limited, don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking.",
         "Life is a journey, and if you fall in love with the journey, you will be in love forever.",
                 "The only way to do great work is to love what you do.",
-                "The only way to predict the future is to create it."
+                "The only way to predict the future is to create it.",
+                "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do.",
+                "Innovation distinguishes between a leader and a follower.",
+                "Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them. Because they change things. They push the human race forward. And while some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.",
+                "If you really look closely, most overnight successes took a long time.",
+                "It's not about money. It's about the people you have, how you're led, and how much you get it.",
+                "The people who are crazy enough to think they can change the world are the ones who do.",
+                "I'm convinced that about half of what separates the successful entrepreneurs from the non-successful ones is pure perseverance.",
+                "Design is not just what it looks like and feels like. Design is how it works.",
+                "Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life.",
+                "Have the courage to follow your heart and intuition. They somehow already know what you truly want to become.",
+                "Be the change you wish to see in the world.",
+                "Strength does not come from physical capacity. It comes from an indomitable will.",
+                "The weak can never forgive. Forgiveness is the attribute of the strong.",
+                "An eye for an eye will only make the whole world blind.",
+                "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+                "Where there is love there is life.",
+                "Happiness is when what you think, what you say, and what you do are in harmony.",
+                "First they ignore you, then they laugh at you, then they fight you, then you win.",
+                "You must be the change you wish to see in the world.",
+                "The difference between what we do and what we are capable of doing would suffice to solve most of the world's problems.",
+                "Action expresses priorities.",
+                "A man is but the product of his thoughts. What he thinks, he becomes.",
+                "The best way to find yourself is to lose yourself in the service of others.",
+                "An ounce of practice is worth more than tons of preaching.",
+                "Strength does not come from winning. Your struggles develop your strengths. When you go through hardships and decide not to surrender, that is strength.",
+                "I will not let anyone walk through my mind with their dirty feet.",
+                "An error does not become truth by reason of multiplied propagation, nor does truth become error because nobody sees it.",
+                "The difference between what we do and what we are capable of doing would suffice to solve most of the world's problems.",
+                "Speak only if it improves upon the silence.",
+                "I offer you peace. I offer you love. I offer you friendship. I see your beauty. I hear your need. I feel your feelings.",
+                "Be the change that you want to see in the world.",
+                "In a gentle way, you can shake the world.",
+                "Nobody can hurt me without my permission.",
+                "Action is no less necessary than thought to the instinctive tendencies of the human frame.",
+                "Prayer is not asking. It is a longing of the soul. It is daily admission of one's weakness. It is better in prayer to have a heart without words than words without a heart.",
+                "Satisfaction lies in the effort, not in the attainment. Full effort is full victory.",
+                "Earth provides enough to satisfy every man's needs, but not every man's greed.",
+                "Service which is rendered without joy helps neither the servant nor the served.",
+                "Even if you are a minority of one, the truth is the truth.",
+                "The future depends on what you do today.",
+                "You may never know what results come of your actions, but if you do nothing, there will be no results.",
+                "Be congruent, be authentic, be your true self.",
+                "Anger and intolerance are the twin enemies of correct understanding.",
+                "The difference between what we do and what we are capable of doing would suffice to solve most of the world's problems.",
+                "You don't know who is important to you until you actually lose them.",
+                "I cannot conceive of a greater loss than the loss of one's self-respect.",
+                "In doing something, do it with love or never do it at all.",
+                "The only tyrant I accept in this world is the still voice within.",
+                "Nobody can hurt me without my permission.",
+                "An eye for an eye will make the whole world blind.",
+                "True beauty lies in the purity of the heart.",
+                "Each one has to find his peace from within. And peace to be real must be unaffected by outside circumstances.",
+                "Your beliefs become your thoughts, your thoughts become your words, your words become your actions, your actions become your habits, your habits become your values, your values become your destiny."
         };
         int startId = 1001;
 
@@ -145,7 +207,7 @@ public class FirstFragment extends Fragment {
             thoughts.put("thought", thoughtsArr[i]);
             db.collection("thoughts").document(Integer.toString(startId++))
                     .set(thoughts);
-            max = startId;
+//            max = startId;
         }
 
 
@@ -169,6 +231,30 @@ public class FirstFragment extends Fragment {
     }
 
     private void getOneThoughtFromFirestore(){
+
+        db.collection("thoughts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int count = 0;
+                            for (DocumentSnapshot document : task.getResult()) {
+                                count++;
+                            }
+                            System.out.println("Number of thoughts "+count);
+                            fetchThought(min +(count-1));
+
+                        } else {
+                            Log.d(getTag(), "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+    }
+
+    private void fetchThought(int max){
         System.out.println("Getting a new thought ... ");
         String thoughtId = Integer.toString(getRandomNumberUsingNextInt(min,max));
         DocumentReference docRef = db.collection("thoughts").document(thoughtId);
@@ -187,18 +273,19 @@ public class FirstFragment extends Fragment {
         binding.buttonWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String thought = binding.textviewThoughtOfTheDay.getText().toString();
+                String thought = "*Thought for the day*\n\n_"+binding.textviewThoughtOfTheDay.getText().toString()+"_";
                 System.out.println("Whatsapp Button Clicked");
                 Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-                whatsappIntent.setType("text/plain");
+                whatsappIntent.setType("text/html");
                 whatsappIntent.setPackage("com.whatsapp");
-                whatsappIntent.putExtra(Intent.EXTRA_TEXT, thought);
+                whatsappIntent.putExtra(Intent.EXTRA_TEXT, thought+"\n\n*Get App*: https://play.google.com/store/apps/details?id=com.saxena.lifestylehq");
+
                 try {
                     startActivity(whatsappIntent);
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast myToast = Toast.makeText(getActivity(), "Whatsapp have not been installed.", Toast.LENGTH_SHORT);
                     myToast.show();
-
+                    ex.printStackTrace();
                 }
             }
         });
